@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const SignInRoutes = require("./routes/signIn");
 const ShopRoutes = require("./routes/shop");
-const cors = require('cors')
+const cors = require("cors");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const port = process.env.PORT || 4000;
@@ -14,7 +14,6 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const MONGODB_URI = "mongodb://127.0.0.1:27017/clothingShop";
 
 const app = express();
-
 
 app.use(bodyParser.json());
 
@@ -31,11 +30,10 @@ app.use((req, res, next) => {
 
 // app.use(cors())
 
-
 app.use(SignInRoutes.router);
 app.use(ShopRoutes.router);
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));
   app.get("*", (req, resp, next) => {
     resp
@@ -43,6 +41,7 @@ if (process.env.NODE_ENV === "production") {
       .sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
+console.log("hiiiiiiiiiiiiiii");
 app.post("/payment", (req, resp, next) => {
   const {
     amount,
