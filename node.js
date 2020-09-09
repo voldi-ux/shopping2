@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const SignInRoutes = require("./routes/signIn");
 const ShopRoutes = require("./routes/shop");
+const cors = require('cors')
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const port = process.env.PORT || 4000;
@@ -13,6 +14,7 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const MONGODB_URI = "mongodb://127.0.0.1:27017/clothingShop";
 
 const app = express();
+
 
 app.use(bodyParser.json());
 
@@ -26,6 +28,9 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+// app.use(cors())
+
 
 app.use(SignInRoutes.router);
 app.use(ShopRoutes.router);

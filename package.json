@@ -10,10 +10,9 @@
   "scripts": {
     "client": "cd client && npm start",
     "server": "nodemon node.js",
-    "build": "cd client && npm run build",
     "devServer": " concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" ",
     "start": "node start",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap"
   },
   "author": "voldi",
   "license": "MIT",
